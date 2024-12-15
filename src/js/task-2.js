@@ -4,6 +4,7 @@
 //? Усі елементи галереї повинні додаватися в DOM за одну операцію додавання.
 //? Додай мінімальне оформлення галереї флексбоксами через CSS класи. 
 
+// ---------------------- Create arr & Search Elements -------------------------------
 //* Create images arr 
 const images = [
   {
@@ -32,10 +33,13 @@ const images = [
   }
 ];
 
-//* Create gallery list 
-const galleryList = document.createElement('ul');
+//* Find gallery list 
+const galleryList = document.querySelector('.gallery');
 galleryList.classList.add('gallery-list');
+// ---------------------- /Create arr & Search Elements -------------------------------
 
+
+// ---------------------- Function -------------------------------
 //* Function
 const createGalleryItems = imagesArr => {
   imagesArr.forEach(element => {
@@ -49,9 +53,8 @@ const createGalleryItems = imagesArr => {
 
     currentListItem.append(currentImage);
     galleryList.append(currentListItem);
-
   });
 };
 
 createGalleryItems(images);
-console.log(galleryList);
+// ---------------------- /Function -------------------------------
