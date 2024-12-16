@@ -6,15 +6,57 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
+// ---------------------- Search Elements -------------------------------
 //* Find elements & Add classes
-const controls = document.querySelector('#controls');
+const controlsDiv = document.querySelector('#controls');
+controlsDiv.style.margin = '30px';
 
-const input = controls.querySelector('input');
-input.classList.add('input-number');
+const inputQuantity = controlsDiv.querySelector('input');
+inputQuantity.classList.add('input-number');
 
-const createBtn = controls.querySelector('[data-create]');
+const createBtn = controlsDiv.querySelector('[data-create]');
 createBtn.classList.add('add-button');
 
-const destroyBtn = controls.querySelector('[data-destroy]');
+const destroyBtn = controlsDiv.querySelector('[data-destroy]');
 destroyBtn.classList.add('destroy-button');
 
+const boxesDiv = document.querySelector('#boxes');
+// ---------------------- /Search Elements -------------------------------
+
+// ---------------------- Functions -------------------------------
+//* Create function
+const createBoxes = quantity => {
+  let boxesArr = [];
+  let size = 30;
+
+  for(let i = 1; i <= quantity; i++){
+    const box = document.createElement('div');
+    box.style.backgroundColor = `${getRandomHexColor()}`;
+    box.style.width = `${size}px`;
+    box.style.height = `${size}px`;
+
+    boxesArr.push(box);
+    size += 10;
+  }
+
+  boxesDiv.append(...boxesArr);
+}
+
+//* Destroy function
+const destroyFunction = () => {
+  boxesDiv.innerHTML = '';
+}
+// ---------------------- /Functions -------------------------------
+
+// ---------------------- Event listeners -------------------------------
+//* Create event listeners with checking (if)
+createBtn.addEventListener('click', () => {
+  if(inputQuantity.value >= 1 && inputQuantity.value <= 100){
+    createBoxes(inputQuantity.value);
+
+    inputQuantity.value = '';
+  }
+});
+
+destroyBtn.addEventListener('click', destroyFunction);
+// ---------------------- /Event listeners -------------------------------
