@@ -52,8 +52,9 @@ const destroyFunction = () => {
 //* Create event listeners with checking (if)
 createBtn.addEventListener('click', () => {
   if(inputQuantity.value >= 1 && inputQuantity.value <= 100){
-    createBoxes(inputQuantity.value);
+    destroyFunction();
 
+    createBoxes(inputQuantity.value);
     inputQuantity.value = '';
   }
 });

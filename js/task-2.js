@@ -39,22 +39,35 @@ galleryList.classList.add('gallery-list');
 // ---------------------- /Create arr & Search Elements -------------------------------
 
 
-// ---------------------- Function -------------------------------
+// ---------------------- Function: Solution 1 -------------------------------
 //* Function
+// const createGalleryItems = imagesArr => {
+//   imagesArr.forEach(element => {
+//     const currentListItem = document.createElement('li');
+//     currentListItem.classList.add('list-item');
+
+//     const currentImage = document.createElement('img');
+//     currentImage.src = element.url;
+//     currentImage.alt = element.alt;
+//     currentImage.classList.add('list-image');
+
+//     currentListItem.append(currentImage);
+//     galleryList.append(currentListItem);
+//   });
+// };
+
+// createGalleryItems(images);
+// ---------------------- /Function -------------------------------
+
+// ---------------------- Function: Solution 2(best) -------------------------------
 const createGalleryItems = imagesArr => {
-  imagesArr.forEach(element => {
-    const currentListItem = document.createElement('li');
-    currentListItem.classList.add('list-item');
+  return `
+    <li class="gallery-item">
+        <img class = "list-image" src="${imagesArr.url}" alt="${imagesArr.alt}">
+    </li>
+  `;
+}
 
-    const currentImage = document.createElement('img');
-    currentImage.src = element.url;
-    currentImage.alt = element.alt;
-    currentImage.classList.add('list-image');
-
-    currentListItem.append(currentImage);
-    galleryList.append(currentListItem);
-  });
-};
-
-createGalleryItems(images);
+const galleryCardsTemplate = images.map(image => createGalleryItems(image)).join('');
+galleryList.insertAdjacentHTML('beforeend', galleryCardsTemplate);
 // ---------------------- /Function -------------------------------
